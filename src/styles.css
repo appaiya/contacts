@@ -1,4 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.section1024 {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative
+}
+
+.bdr {
+  border: 1px solid #000;
+}
+
+.bdrThin {
+  border: 1px solid lightgray;
+}
+
+.minHeight90vh {
+  min-height: 90vh
+}
+
+.flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex: initial !important
+}
+
+.width60 {
+  width: 60%;
+}
+
+.width40 {
+  width: 40%;
+}
+
+.width50 {
+  width: 50%;
+}
+
+.pad10 {
+  padding: 10px !important
+}
+
+.pad5 {
+  padding: 5px !important
+}
+
+.pad3 {
+  padding: 3px !important
+}
+
+@media only screen and (max-width: 768px) {
+  .width40,
+  .width50,
+  .width60 {
+    width: 100% !important;
+  }
+
+  .flexResponsive {
+    display: block !important;
+  }
+}

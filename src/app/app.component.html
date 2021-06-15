@@ -2,6 +2,72 @@
 
 <mat-toolbar color="primary">
   <span>Contacts App</span>
-  <span class="example-spacer"></span>
 </mat-toolbar>
+
+<div class="bdrThin minHeight90vh section1024">
+  <div class="flex flexResponsive">
+    <div class="width40 minHeight90vh">
+      <div class="pad10">
+
+        <div class="flex pad10">
+          <input class="form-element bdr" matInput [matAutocomplete]="auto" placeholder="Search for a Contact" [(ngModel)]="searchVal" >
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let contact of contactsStore.contacts | async" [value]="contact.firstName" (onSelectionChange)="cardAction(contact, 'view')" >
+              <span>{{contact.firstName}}</span>
+            </mat-option>
+          </mat-autocomplete>
+          <div class="pad3"></div>
+          <button mat-mini-fab color="primary" (click)="add()"><mat-icon aria-hidden="false" aria-label="Add">add</mat-icon></button>
+        </div>
+
+        <ng-container *ngIf="contactsStore.contacts">
+          <div *ngFor="let contact of contactsStore.contacts | async">
+            <app-contact-card [contact] = contact (action)="cardAction(contact, $event)"></app-contact-card>
+            <div class="pad5"></div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="bdrThin"></div>
+    <div class="width60 minHeight90vh pad10">
+      <ng-container *ngIf="action != ''">
+        <div class="pad10">
+            <mat-form-field class="form-element">
+              <input class="parimary" matInput placeholder="First Name*" [(ngModel)]="contactObj.firstName" [disabled]="action == 'view'">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <input class="parimary" matInput placeholder="Last Name" [(ngModel)]="contactObj.lastName" [disabled]="action == 'view'">
+            </mat-form-field>
+
+            <div class="flex row" *ngFor="let contact of contactObj.contactNumbers">
+              <mat-form-field class="col" appearance="fill">
+                <mat-label>Contact Number Type</mat-label>
+                <mat-select id="contactNumberType" name="contactNumberType" [(ngModel)]="contact.type" [disabled]="action == 'view'">
+                  <mat-option *ngFor="let contactType of contactTypes" [value]="contactType.value">
+                    {{contactType.type}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="pad10"></div>
+              <mat-form-field class="col form-element">
+                <input type="tel" class="parimary" matInput placeholder="Enter Number" [(ngModel)]="contact.number" [disabled]="action == 'view'">
+              </mat-form-field>
+            </div>
+
+            <div class="form-element">
+              <mat-checkbox [(ngModel)]="contactObj.isFavorite" [disabled]="action == 'view'">Add to Favorite</mat-checkbox>
+            </div>
+
+            <mat-error *ngIf="errorValue != ''">
+                {{errorValue}}
+            </mat-error>
+
+            <div *ngIf="action != 'view'" class="form-element">
+              <button mat-raised-button color="primary" type="submit" class="button" (click)="addNewContactCTA()" >Add Contact</button>
+            </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
 

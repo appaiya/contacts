@@ -1,0 +1,13 @@
+<mat-card class="bdr">
+  <mat-card-header>
+    <mat-card-title>{{contact.firstName}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-button (click)="actionCTA('edit')" title="Edit"><mat-icon aria-hidden="false" aria-label="Edit">edit</mat-icon></button>
+    <button mat-button (click)="actionCTA('view')" title="View"><mat-icon aria-hidden="false" aria-label="View">remove_red_eye</mat-icon></button>
+    <button mat-button (click)="actionCTA('favorite')" title="Favorite">
+      <mat-icon aria-hidden="false" aria-label="Favorite"> {{contact.isFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+    </button>
+    <button mat-button (click)="actionCTA('delete')" title="Delete"><mat-icon aria-hidden="false" aria-label="View">delete</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
