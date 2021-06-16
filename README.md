@@ -1,5 +1,11 @@
 # Contacts
 
+Create, Modify, Read and Remove Contacts from the Contact List.
+
+Used Angular Material for UI.
+
+`ng add @angular/material`
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
 
 ## Development server
