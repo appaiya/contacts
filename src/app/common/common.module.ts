@@ -10,8 +10,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
+  declarations: [
+    SearchPipe
+  ],
   exports: [
     MatToolbarModule,
     MatIconModule,
@@ -22,7 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    SearchPipe
   ]
 })
-export class MaterialModule { }
+export class CommonModule { }

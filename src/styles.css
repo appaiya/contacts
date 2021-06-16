@@ -38,6 +38,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 60%;
 }
 
+.width100 {
+  width: 100%;
+}
+
 .width40 {
   width: 40%;
 }

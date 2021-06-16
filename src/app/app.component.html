@@ -10,19 +10,19 @@
       <div class="pad10">
 
         <div class="flex pad10">
-          <input class="form-element bdr" matInput [matAutocomplete]="auto" placeholder="Search for a Contact" [(ngModel)]="searchVal" >
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let contact of contactsStore.contacts | async" [value]="contact.firstName" (onSelectionChange)="cardAction(contact, 'view')" >
-              <span>{{contact.firstName}}</span>
-            </mat-option>
-          </mat-autocomplete>
+          <input class="width100 bdr" matInput placeholder="Search for a Contact" [(ngModel)]="searchVal" >
           <div class="pad3"></div>
           <button mat-mini-fab color="primary" (click)="add()"><mat-icon aria-hidden="false" aria-label="Add">add</mat-icon></button>
         </div>
 
         <ng-container *ngIf="contactsStore.contacts">
-          <div *ngFor="let contact of contactsStore.contacts | async">
-            <app-contact-card [contact] = contact (action)="cardAction(contact, $event)"></app-contact-card>
+          <div *ngFor="let contact of contactsStore.contacts | async | SearchFilter: searchVal">
+            <ng-container *ngIf="contact != 'noResult'">
+              <app-contact-card [contact] = contact (action)="cardAction(contact, $event)"></app-contact-card>
+            </ng-container>
+            <ng-container *ngIf="contact == 'noResult'">
+              <div class="pad10"> Contacts not found </div>
+            </ng-container>
             <div class="pad5"></div>
           </div>
         </ng-container>
@@ -63,7 +63,7 @@
             </mat-error>
 
             <div *ngIf="action != 'view'" class="form-element">
-              <button mat-raised-button color="primary" type="submit" class="button" (click)="addNewContactCTA()" >Add Contact</button>
+              <button mat-raised-button color="primary" type="submit" class="button" (click)="addNewContactCTA()" >{{ action == 'edit' ? 'Edit' : 'Add'}} Contact</button>
             </div>
         </div>
       </ng-container>
